@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData, UniqueConstraint, ForeignKey
 from werkzeug.security import generate_password_hash, check_password_hash
+import bcrypt
 
 metadata = MetaData(naming_convention={
     "fk":"_%(table_name)s_%(column_0_name)s_%(referred_table_name)s"
@@ -23,11 +24,11 @@ class User(db.Model):
         return f'(id={self.id}, username={self.username}, email={self.email})'
     
     def set_password(self,password):
-        self.password_hash=generate_password_hash(password)
+        self.password_hash=generate_password_hash(password, method='scrypt:32768:8:1', salt_length=16)
 
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return bcrypt.checkpw(self.password_hash.encode('utf-8'), password.encode('utf-8'))
 
 
 
