@@ -36,4 +36,3 @@ login_input_schema = server.model('login_input',{
     'username': fields.String(required=True),
     'password': fields.String(required=True),
 })
-
