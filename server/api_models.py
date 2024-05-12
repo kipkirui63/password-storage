@@ -24,7 +24,12 @@ users_input_schema = server.model('users_input', {
 
 })
 
-
+signup_input_schema = server.model('signup_input',{
+    'username': fields.String(required=True),
+    'email': fields.String(required=True),
+    'password': fields.String(required=True),
+    'repeatpassword':fields.String(required=True),
+})
 
 
 
