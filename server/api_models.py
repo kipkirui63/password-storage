@@ -32,4 +32,8 @@ signup_input_schema = server.model('signup_input',{
 })
 
 
+login_input_schema = server.model('login_input',{
+    'username': fields.String(required=True),
+    'password': fields.String(required=True),
+})
 
