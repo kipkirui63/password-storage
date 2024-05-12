@@ -1,0 +1,19 @@
+from flask_restx import Resource, Namespace
+from marshmallow import schema , fields
+from server import app, server
+
+
+ns = Namespace('password_manager')
+
+server.add_namespace(ns)
+
+
+
+
+
+#*************************************api models*************************************#
+users_schema = server.model('users', {
+    'id' : fields.Integer(readOnly=True, description = 'id of user'),
+    'username': fields.String(required=True, description = 'username of user'),
+    'email' : fields.String(required=True)
+})
