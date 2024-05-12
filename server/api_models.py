@@ -11,9 +11,20 @@ server.add_namespace(ns)
 
 
 
-#*************************************api models*************************************#
+#*************************************servermodels*************************************#
 users_schema = server.model('users', {
     'id' : fields.Integer(readOnly=True, description = 'id of user'),
     'username': fields.String(required=True, description = 'username of user'),
     'email' : fields.String(required=True)
 })
+
+users_input_schema = server.model('users_input', {
+    'username': fields.String,
+    'email': fields.String,
+
+})
+
+
+
+
+
